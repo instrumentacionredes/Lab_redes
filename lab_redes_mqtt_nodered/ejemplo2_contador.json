@@ -1,0 +1,173 @@
+[
+    {
+        "id": "f1ce2ab8011918f7",
+        "type": "inject",
+        "z": "a37a7b5614769490",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 240,
+        "y": 160,
+        "wires": [
+            [
+                "9812e7d297a016fa"
+            ]
+        ]
+    },
+    {
+        "id": "a8b7012f1b3b642b",
+        "type": "debug",
+        "z": "a37a7b5614769490",
+        "name": "debug ",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 610,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "9812e7d297a016fa",
+        "type": "function",
+        "z": "a37a7b5614769490",
+        "name": "function 1",
+        "func": "// Reset si se recibe msg.payload = true y msg.topic = 'reset'\nif (msg.payload === true && msg.topic === 'reset') {\n    context.count = 0;\n} else {\n    if (typeof context.count === 'undefined') {\n        context.count = 0;\n    }\n    context.count += 1;\n}\n\nmsg.payload = context.count;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 160,
+        "wires": [
+            [
+                "a8b7012f1b3b642b",
+                "db859112c0b5ceb1"
+            ]
+        ]
+    },
+    {
+        "id": "d2021c3a04bd180a",
+        "type": "ui_button",
+        "z": "a37a7b5614769490",
+        "name": "Contar Pulso",
+        "group": "4628915150b63c68",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Contar Pulso",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "increment",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 250,
+        "y": 240,
+        "wires": [
+            [
+                "9812e7d297a016fa"
+            ]
+        ]
+    },
+    {
+        "id": "c5f50f13f723e55f",
+        "type": "ui_button",
+        "z": "a37a7b5614769490",
+        "name": "Reset",
+        "group": "4628915150b63c68",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Reset",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "reset",
+        "topicType": "str",
+        "x": 230,
+        "y": 320,
+        "wires": [
+            [
+                "9812e7d297a016fa"
+            ]
+        ]
+    },
+    {
+        "id": "db859112c0b5ceb1",
+        "type": "ui_gauge",
+        "z": "a37a7b5614769490",
+        "name": "Pulsos",
+        "group": "4628915150b63c68",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Pulsos",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": 10,
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 610,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "4628915150b63c68",
+        "type": "ui_group",
+        "name": "Group 1",
+        "tab": "c6f8162b3e65c02c",
+        "order": 1,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "c6f8162b3e65c02c",
+        "type": "ui_tab",
+        "name": "Ejemplo2",
+        "icon": "dashboard",
+        "order": 6,
+        "disabled": false,
+        "hidden": false
+    }
+]

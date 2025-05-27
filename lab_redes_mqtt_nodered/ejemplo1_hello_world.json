@@ -1,0 +1,68 @@
+[
+    {
+        "id": "acadbdcffca22555",
+        "type": "inject",
+        "z": "f51c5922ce53c41e",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 180,
+        "wires": [
+            [
+                "f098fcd307d120fe"
+            ]
+        ]
+    },
+    {
+        "id": "4fc48ba122429387",
+        "type": "debug",
+        "z": "f51c5922ce53c41e",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 420,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "f098fcd307d120fe",
+        "type": "function",
+        "z": "f51c5922ce53c41e",
+        "name": "function 1",
+        "func": "// Create a Date object from the payload\nvar date = new Date(msg.payload);\n// Change the payload to be a formatted Date string\nmsg.payload = date.toString();\n// Return the message so it can be sent on\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 260,
+        "y": 180,
+        "wires": [
+            [
+                "4fc48ba122429387"
+            ]
+        ]
+    }
+]

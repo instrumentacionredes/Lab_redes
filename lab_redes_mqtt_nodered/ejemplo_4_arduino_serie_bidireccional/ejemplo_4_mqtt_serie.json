@@ -1,0 +1,211 @@
+[
+    {
+        "id": "9ea28c411270c26a",
+        "type": "mqtt in",
+        "z": "c8bd7d1498a33b84",
+        "name": "",
+        "topic": "instrumentacionredes/f/encendido",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "868583708466f701",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 330,
+        "y": 320,
+        "wires": [
+            [
+                "6d803250c9c31ae0",
+                "1d11d0041578c403"
+            ]
+        ]
+    },
+    {
+        "id": "dc52d172e1f4ebf6",
+        "type": "mqtt out",
+        "z": "c8bd7d1498a33b84",
+        "name": "",
+        "topic": "instrumentacionredes/f/indicador",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "868583708466f701",
+        "x": 650,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "0088ba7e57c68c65",
+        "type": "inject",
+        "z": "c8bd7d1498a33b84",
+        "name": "Apagado",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "0",
+        "payloadType": "num",
+        "x": 260,
+        "y": 220,
+        "wires": [
+            [
+                "dc52d172e1f4ebf6"
+            ]
+        ]
+    },
+    {
+        "id": "6d803250c9c31ae0",
+        "type": "debug",
+        "z": "c8bd7d1498a33b84",
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 720,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "189a66a2ad995464",
+        "type": "inject",
+        "z": "c8bd7d1498a33b84",
+        "name": "Encendido",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 260,
+        "y": 160,
+        "wires": [
+            [
+                "dc52d172e1f4ebf6"
+            ]
+        ]
+    },
+    {
+        "id": "f99fc80634835814",
+        "type": "serial in",
+        "z": "c8bd7d1498a33b84",
+        "name": "",
+        "serial": "ebdebddf718ac93a",
+        "x": 270,
+        "y": 80,
+        "wires": [
+            [
+                "dc52d172e1f4ebf6"
+            ]
+        ]
+    },
+    {
+        "id": "d417f2cf33016204",
+        "type": "serial out",
+        "z": "c8bd7d1498a33b84",
+        "name": "",
+        "serial": "ebdebddf718ac93a",
+        "x": 730,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "1d11d0041578c403",
+        "type": "function",
+        "z": "c8bd7d1498a33b84",
+        "name": "function 3",
+        "func": "if (msg.payload == 1) {\n    msg.payload = \"LED_ON\";\n} else if (msg.payload == 0) {\n    msg.payload = \"LED_OFF\";\n} else {\n    msg.payload = \"VALOR DESCONOCIDO\";\n}\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 400,
+        "wires": [
+            [
+                "d417f2cf33016204"
+            ]
+        ]
+    },
+    {
+        "id": "868583708466f701",
+        "type": "mqtt-broker",
+        "name": "labredes",
+        "broker": "io.adafruit.com",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "ebdebddf718ac93a",
+        "type": "serial-port",
+        "name": "",
+        "serialport": "COM7",
+        "serialbaud": "9600",
+        "databits": 8,
+        "parity": "none",
+        "stopbits": 1,
+        "waitfor": "",
+        "dtr": "none",
+        "rts": "none",
+        "cts": "none",
+        "dsr": "none",
+        "newline": "\\n",
+        "bin": "false",
+        "out": "char",
+        "addchar": "",
+        "responsetimeout": 10000
+    }
+]

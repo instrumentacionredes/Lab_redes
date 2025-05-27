@@ -1,0 +1,146 @@
+[
+    {
+        "id": "d05525f2fc431803",
+        "type": "mqtt in",
+        "z": "a38740a60563a729",
+        "name": "",
+        "topic": "instrumentacionredes/f/encendido",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "868583708466f701",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 470,
+        "y": 340,
+        "wires": [
+            [
+                "37b660c86378f938"
+            ]
+        ]
+    },
+    {
+        "id": "82e32dcc2dba9a4f",
+        "type": "mqtt out",
+        "z": "a38740a60563a729",
+        "name": "",
+        "topic": "instrumentacionredes/f/indicador",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "868583708466f701",
+        "x": 790,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "3f29908da31c5ddb",
+        "type": "inject",
+        "z": "a38740a60563a729",
+        "name": "Apagado",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "0",
+        "payloadType": "num",
+        "x": 400,
+        "y": 240,
+        "wires": [
+            [
+                "82e32dcc2dba9a4f"
+            ]
+        ]
+    },
+    {
+        "id": "37b660c86378f938",
+        "type": "debug",
+        "z": "a38740a60563a729",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 700,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "86943fee821f45da",
+        "type": "inject",
+        "z": "a38740a60563a729",
+        "name": "Encendido",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 400,
+        "y": 180,
+        "wires": [
+            [
+                "82e32dcc2dba9a4f"
+            ]
+        ]
+    },
+    {
+        "id": "868583708466f701",
+        "type": "mqtt-broker",
+        "name": "labredes",
+        "broker": "io.adafruit.com",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    }
+]
