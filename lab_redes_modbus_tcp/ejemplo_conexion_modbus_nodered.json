@@ -1,0 +1,190 @@
+[
+    {
+        "id": "25c06f709653969c",
+        "type": "tab",
+        "label": "Ejemplo conexion modbus - nodered",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "b06d275f678d0da1",
+        "type": "modbus-read",
+        "z": "25c06f709653969c",
+        "name": "I3",
+        "topic": "",
+        "showStatusActivities": false,
+        "logIOActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "unitid": "",
+        "dataType": "Input",
+        "adr": "2",
+        "quantity": "1",
+        "rate": "1",
+        "rateUnit": "s",
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "server": "691649d811290888",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "x": 370,
+        "y": 180,
+        "wires": [
+            [
+                "f45fc0cefc88cc17"
+            ],
+            [
+                "9a961f834ff84987"
+            ]
+        ]
+    },
+    {
+        "id": "f45fc0cefc88cc17",
+        "type": "debug",
+        "z": "25c06f709653969c",
+        "name": "debug 16",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 620,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "9a961f834ff84987",
+        "type": "debug",
+        "z": "25c06f709653969c",
+        "name": "debug 17",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 620,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "4b8eb7b51d0de47e",
+        "type": "modbus-write",
+        "z": "25c06f709653969c",
+        "name": "Q4",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "unitid": "",
+        "dataType": "Coil",
+        "adr": "8195",
+        "quantity": "1",
+        "server": "691649d811290888",
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "x": 630,
+        "y": 360,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "48b858cd7af91bd3",
+        "type": "inject",
+        "z": "25c06f709653969c",
+        "name": "apagar",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "x": 410,
+        "y": 340,
+        "wires": [
+            [
+                "4b8eb7b51d0de47e"
+            ]
+        ]
+    },
+    {
+        "id": "c673d0c918ebf670",
+        "type": "inject",
+        "z": "25c06f709653969c",
+        "name": "prender",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 410,
+        "y": 400,
+        "wires": [
+            [
+                "4b8eb7b51d0de47e"
+            ]
+        ]
+    },
+    {
+        "id": "691649d811290888",
+        "type": "modbus-client",
+        "name": "Logo",
+        "clienttype": "tcp",
+        "bufferCommands": true,
+        "stateLogEnabled": false,
+        "queueLogEnabled": false,
+        "failureLogEnabled": true,
+        "tcpHost": "192.168.0.2",
+        "tcpPort": 502,
+        "tcpType": "DEFAULT",
+        "serialPort": "/dev/ttyUSB",
+        "serialType": "RTU-BUFFERD",
+        "serialBaudrate": 9600,
+        "serialDatabits": 8,
+        "serialStopbits": 1,
+        "serialParity": "none",
+        "serialConnectionDelay": 100,
+        "serialAsciiResponseStartDelimiter": "0x3A",
+        "unit_id": 1,
+        "commandDelay": 1,
+        "clientTimeout": 1000,
+        "reconnectOnTimeout": true,
+        "reconnectTimeout": 2000,
+        "parallelUnitIdsAllowed": true,
+        "showErrors": false,
+        "showWarnings": true,
+        "showLogs": true
+    }
+]
